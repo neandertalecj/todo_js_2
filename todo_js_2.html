@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>manager</title>
+	</head>
+	<style>
+		.container{
+			background-color: pink;
+		    width: 70%;
+		    margin: 0 auto;
+		    text-align: center;
+		    padding-top: 8px;
+		    padding-bottom: 8px;
+		    height: 120px;
+		}
+		h2{
+			color: gray;
+		}
+		input{
+			height: 32px;
+    		width: 75%;
+    		float: left;
+		}
+		.addBtn{
+			float:left;
+			width: 25%;
+			color: white;
+		    background-color: gray;
+		    height: 32px;
+		    font-size: 20px;
+		    line-height: 29px;
+		    cursor: pointer;
+		}
+		.box{
+			width: 90%;
+    		margin: 0 auto;
+		}
+		/* Clear floats after the box */
+		.box:after {
+		    content: "";
+		    display: table;
+		    clear: both;
+		}
+
+		#taskOl{
+			margin-top: 50px;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<h2>Список задач</h2>
+			<div class="box">
+				<input type="text" id="input">
+				<span class="addBtn" onclick="addLi()">Додати</span>
+			</div>
+			<ol id="taskOl"></ol>
+		</div>
+	</body>
+	<script>
+		
+			// alert('Hello');
+			var addBtn = document.getElementsByClassName('addBtn');
+			// var ol = document.getElementsByTagName('ol');
+			// console.log(ol);
+			// addBtn.onclick = function(){
+			// 	alert('Hello');
+			// }
+			function createLi(){
+				var li = document.createElement('li');
+				// var txt = document.createTextNode('To sleep');
+				var inputValue = document.getElementById('input').value;
+				var txt = document.createTextNode(inputValue);
+				li.appendChild(txt);
+				
+				// console.log(li);
+				if(inputValue == ''){
+					alert('Введіть текст задачі');
+				}else{
+					document.getElementById('taskOl').appendChild(li);
+				}
+				document.getElementById('input').value='';
+			}
+
+			function addLi(){
+				createLi();
+			}
+	</script>
+</html>
