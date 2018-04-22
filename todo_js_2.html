@@ -45,6 +45,15 @@
 		#taskOl{
 			margin-top: 50px;
 		}
+		li{
+			text-align: left;
+			user-select: none;
+			position: relative;
+		}
+		.close{
+			position: absolute;
+			right: 0;
+		}
 	</style>
 	<body>
 		<div class="container">
@@ -76,13 +85,27 @@
 				if(inputValue == ''){
 					alert('Введіть текст задачі');
 				}else{
-					document.getElementById('taskOl').appendChild(li);
+					document.getElementById('taskOl').appendChild(li);                                                               
 				}
 				document.getElementById('input').value='';
 			}
 
+			var a=0;
+			function addClose(){
+				var arrLi = document.getElementsByTagName('li');
+				for(a=a; a<arrLi.length; a++){
+					console.log(arrLi[a]);
+					var span = document.createElement('span');
+					var closeSymbol = document.createTextNode('\u00D7');
+					span.className = 'close';
+					span.appendChild(closeSymbol);
+					arrLi[a].appendChild(span); 
+				} 
+			}
+
 			function addLi(){
 				createLi();
+				addClose();
 			}
 	</script>
 </html>
