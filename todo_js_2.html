@@ -53,6 +53,7 @@
 		.close{
 			position: absolute;
 			right: 0;
+			cursor: pointer;
 		}
 	</style>
 	<body>
@@ -93,6 +94,7 @@
 			var a=0;
 			function addClose(){
 				var arrLi = document.getElementsByTagName('li');
+				// var arrSpan = document.getElementsByTagName('span');
 				for(a=a; a<arrLi.length; a++){
 					console.log(arrLi[a]);
 					var span = document.createElement('span');
@@ -100,12 +102,22 @@
 					span.className = 'close';
 					span.appendChild(closeSymbol);
 					arrLi[a].appendChild(span); 
-				} 
-			}
+
+					// arrSpan[a].onclick = function(){
+					// 	var par = this.parentElement;
+					// 	par.style.display = 'none';
+					// }
+					arrLi[a].firstElementChild.onclick = function(){
+						var par = this.parentElement;
+						par.style.display = 'none';
+					}
+				} //end for
+			} //end addClose
 
 			function addLi(){
 				createLi();
 				addClose();
 			}
+			 
 	</script>
 </html>
