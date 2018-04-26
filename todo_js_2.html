@@ -68,45 +68,49 @@
 	</body>
 	<script>
 		
-			// alert('Hello');
-			var addBtn = document.getElementsByClassName('addBtn');
-			// var ol = document.getElementsByTagName('ol');
-			// console.log(ol);
-			// addBtn.onclick = function(){
-			// 	alert('Hello');
-			// }
+			var addBtn = document.getElementsByClassName('addBtn'),
+				arrList=[];
+			createArr();
+
+			function createArr(){
+				var list = document.getElementsByTagName('LI');
+				// list= Array.prototype.slice.call(list);
+				if(!list.firstElementChild){
+					arrList.length = 0;
+					for(var k=0; k<list.length; k++){
+						if( list[k].style.display !== 'none' ){
+							arrList.push(list[k].innerText);
+						}
+					}
+				}
+			} //end createArr
+
 			function createLi(){
 				var li = document.createElement('li');
-				// var txt = document.createTextNode('To sleep');
 				var inputValue = document.getElementById('input').value;
 				var txt = document.createTextNode(inputValue);
 				li.appendChild(txt);
 				
-				// console.log(li);
 				if(inputValue == ''){
 					alert('Введіть текст задачі');
 				}else{
 					document.getElementById('taskOl').appendChild(li);                                                               
 				}
+
 				document.getElementById('input').value='';
-			}
+			} //end createLi
 
 			var a=0;
 			function addClose(){
 				var arrLi = document.getElementsByTagName('li');
-				// var arrSpan = document.getElementsByTagName('span');
 				for(a=a; a<arrLi.length; a++){
-					console.log(arrLi[a]);
+					// console.log(arrLi[a]);
 					var span = document.createElement('span');
 					var closeSymbol = document.createTextNode('\u00D7');
 					span.className = 'close';
 					span.appendChild(closeSymbol);
 					arrLi[a].appendChild(span); 
 
-					// arrSpan[a].onclick = function(){
-					// 	var par = this.parentElement;
-					// 	par.style.display = 'none';
-					// }
 					arrLi[a].firstElementChild.onclick = function(){
 						var par = this.parentElement;
 						par.style.display = 'none';
@@ -117,6 +121,7 @@
 			function addLi(){
 				createLi();
 				addClose();
+				createArr();
 			}
 			 
 	</script>
