@@ -70,7 +70,6 @@
 		
 			var addBtn = document.getElementsByClassName('addBtn'),
 				arrList=[];
-			createArr();
 
 			function createArr(){
 				var list = document.getElementsByTagName('LI');
@@ -79,11 +78,13 @@
 					arrList.length = 0;
 					for(var k=0; k<list.length; k++){
 						if( list[k].style.display !== 'none' ){
-							arrList.push(list[k].innerText);
+							arrList.push(list[k].innerText); //textContent
 						}
 					}
 				}
 			} //end createArr
+
+			createArr();
 
 			function createLi(){
 				var li = document.createElement('li');
