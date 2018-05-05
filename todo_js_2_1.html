@@ -41,7 +41,6 @@
 		    display: table;
 		    clear: both;
 		}
-
 		#taskOl{
 			margin-top: 50px;
 		}
@@ -69,7 +68,7 @@
 	<script>
 			var addBtn = document.getElementsByClassName('addBtn'),
 				arrList=[];
-
+			createArr();
 			function createArr(){
 				var list = document.getElementsByTagName('LI');
 				// list= Array.prototype.slice.call(list);
@@ -77,53 +76,34 @@
 					arrList.length = 0;
 					for(var k=0; k<list.length; k++){
 						if( list[k].style.display !== 'none' ){
-							arrList.push(list[k].innerText); //textContent
+							arrList.push(list[k].innerText);
 						}
 					}
 				}
 			} //end createArr
 
-			createArr();
-
 			function createLi(){
 				var li = document.createElement('li');
 				var inputValue = document.getElementById('input').value;
-				var txt = document.createTextNode(inputValue);
-				li.appendChild(txt);
-				
+				li.innerHTML = `
+					${inputValue}
+					<span class="close" onclick="closeTask(event)">×</span>
+				`;
 				if(inputValue == ''){
 					alert('Введіть текст задачі');
 				}else{
-					document.getElementById('taskOl').appendChild(li);                                                               
+					document.getElementById('taskOl').appendChild(li);
 				}
-
 				document.getElementById('input').value='';
 			} //end createLi
-
-			var a=0;
-			function addClose(){
-				var arrLi = document.getElementsByTagName('li');
-				for(a=a; a<arrLi.length; a++){
-					// console.log(arrLi[a]);
-					var span = document.createElement('span');
-					var closeSymbol = document.createTextNode('\u00D7');
-					span.className = 'close';
-					span.appendChild(closeSymbol);
-					arrLi[a].appendChild(span); 
-
-					arrLi[a].firstElementChild.onclick = function(){
-						var par = this.parentElement;
-						par.style.display = 'none';
-						createArr();
-					}
-				} //end for
-			} //end addClose
-
+			
 			function addLi(){
 				createLi();
-				addClose();
 				createArr();
 			}
-			 
+			const closeTask = e => {
+				e.target.parentElement.style = 'display: none;';
+				createArr();
+			}
 	</script>
 </html>
